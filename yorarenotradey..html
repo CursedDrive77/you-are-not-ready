@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>You Are Not Ready</title>
+  <style>
+    body {
+      background-color: black;
+      color: red;
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
+      overflow: hidden;
+    }
+
+
+    h1 {
+      font-size: 5rem;
+      animation: flicker 1s infinite;
+    }
+
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+
+    .face {
+      position: absolute;
+      font-size: 3rem;
+      animation: spin 5s linear infinite;
+    }
+
+
+    @keyframes spin {
+      0% { transform: rotate(0deg) translateX(0); }
+      100% { transform: rotate(360deg) translateX(200px); }
+    }
+
+
+    .popup {
+      position: fixed;
+      top: 20%;
+      left: 30%;
+      width: 300px;
+      padding: 20px;
+      background: #111;
+      color: lime;
+      border: 2px solid red;
+      box-shadow: 0 0 20px red;
+      z-index: 9999;
+      font-family: monospace;
+    }
+
+
+    .popup h3 {
+      color: red;
+    }
+
+
+    .warning {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: red;
+      color: white;
+      font-weight: bold;
+      padding: 10px;
+      text-align: center;
+      animation: warningFlash 0.5s infinite;
+    }
+
+
+    @keyframes warningFlash {
+      0% { background-color: red; }
+      50% { background-color: darkred; }
+      100% { background-color: red; }
+    }
+  </style>
+</head>
+<body>
+  <h1>You Are Not Ready 😈</h1>
+  <audio autoplay loop>
+    <source src="https://www.myinstants.com/media/sounds/evil-laugh.mp3" type="audio/mp3">
+  </audio>
+
+
+  <div class="warning">⚠️ SYSTEM ALERT: Your device has been cursed! ⚠️</div>
+
+
+  <script>
+    const faces = ["😈", "👁️", "🌀", "💀"];
+    
+    function spawnFace() {
+      const span = document.createElement("span");
+      span.classList.add("face");
+      span.textContent = faces[Math.floor(Math.random() * faces.length)];
+      span.style.top = `${Math.random() * window.innerHeight}px`;
+      span.style.left = `${Math.random() * window.innerWidth}px`;
+      document.body.appendChild(span);
+      setTimeout(() => {
+        document.body.removeChild(span);
+      }, 8000);
+    }
+
+
+    setInterval(spawnFace, 300);
+
+
+    function spawnPopup() {
+      const popup = document.createElement("div");
+      popup.classList.add("popup");
+      popup.innerHTML = `
+        <h3>⚠️ CRITICAL ERROR</h3>
+        <p>System32 has been deleted.<br>
+        Initiating meltdown...</p>
+      `;
+      document.body.appendChild(popup);
+      setTimeout(() => {
+        document.body.removeChild(popup);
+      }, 5000);
+    }
+
+
+    function triggerAlerts() {
+      alert("💀 WARNING: MEMORY LEAK DETECTED.");
+      setTimeout(() => alert("🔒 ENCRYPTING FILES..."), 1000);
+      setTimeout(() => alert("💾 Your Roblox password is mine now."), 2000);
+    }
+
+
+    setInterval(spawnPopup, 7000);
+    setTimeout(triggerAlerts, 10000);
+  </script>
+</body>
+</html>
